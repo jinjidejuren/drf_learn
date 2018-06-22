@@ -159,7 +159,3 @@ AUTHENTICATION_BACKENDS = (
 
 AUTH_USER_MODEL = 'rbac.UserProfile'
 
-LOGIN_LDAP_SERVER = 'ldap://192.168.1.130:389'
-LOGIN_LDAP_PORT = 389
-LOGIN_LDAP_USER = 'cn=manager,dc=guahao-inc,dc=com'
-LOGIN_LDAP_PASSWD = 'secret'
