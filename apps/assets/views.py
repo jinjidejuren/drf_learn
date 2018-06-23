@@ -1,8 +1,12 @@
 from rest_framework import viewsets
 from rest_framework import permissions
+from django_filters import rest_framework
+from rest_framework import filters
+
 
 from .serializers import *
 from .paginations import *
+from .filters import *
 
 
 class CustomerAccessPermission(permissions.BasePermission):
@@ -56,3 +60,17 @@ class DeviceViewSet(viewsets.ModelViewSet):
     queryset = Device.objects.all()
     serializer_class = DeviceSerializer
     pagination_class = LargeResultsSetPagination
+
+
+class ServerViewSet(viewsets.ModelViewSet):
+    """
+    物理服务器视图
+    """
+    queryset = Server.objects.all()
+    serializer_class = ServerSerializer
+    pagination_class = MyFormatResultsSetPagination
+    filter_backends = (rest_framework.DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter, )
+    filter_class = ServerFilter
+    search_fields = ('^server_name', '=brand', 'status', )
+    ordering_fields = ('cpus', 'ram', 'disk', 'product_date', )
+    ordering = ('-created_time', )

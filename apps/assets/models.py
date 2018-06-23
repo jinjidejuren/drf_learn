@@ -83,3 +83,36 @@ class Device(models.Model):
 
     def __str__(self):
         return self.device_name
+
+
+class Server(models.Model):
+    """
+    物理服务器
+    """
+    status_choice = (
+        ('online', '上线'),
+        ('offline', '下线'),
+        ('normal', '正常'),
+        ('abnormal', '异常')
+    )
+
+    server_name = models.CharField(verbose_name=u'服务器名称', max_length=128, blank=False, null=False)
+    server_num = models.CharField(verbose_name=u'服务器编号', max_length=128, blank=True, null=True)
+    brand = models.CharField(verbose_name=u'品牌', max_length=64, blank=True, null=True)
+    model = models.CharField(verbose_name=u'型号', max_length=64, blank=True, null=True)
+    cpus = models.IntegerField(verbose_name=u'cpu核数', default=0)
+    ram = models.IntegerField(verbose_name=u'内存大小', default=0)
+    disk = models.IntegerField(verbose_name=u'磁盘大小', default=0)
+    product_date = models.DateTimeField(verbose_name=u'生产日期', auto_now_add=True)
+    status = models.CharField(verbose_name=u'状态', max_length=16, choices=status_choice)
+
+    created_time = models.DateTimeField(verbose_name=u'创建时间', auto_now_add=True)
+    modified_time = models.DateTimeField(verbose_name=u'修改时间', auto_now_add=True)
+
+    class Meta:
+        verbose_name = u'服务器'
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.server_name
+

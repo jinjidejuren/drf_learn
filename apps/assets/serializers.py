@@ -52,12 +52,13 @@ class DeviceSerializer(serializers.ModelSerializer):
                   'hardware', 'cabinet_id', 'created_time', 'modified_time')
 
 
-class ServiceSerializer(serializers.ModelSerializer):
+class ServerSerializer(serializers.ModelSerializer):
     """
     服务器序列化
     """
 
     class Meta:
         model = Server
-        fields = ('id', 'project', 'manager', 'service_tag', 'server_status', 'server_name',
-                  'environment', 'brand', 'model', 'assets_number', 'ip_addr', 'cabinet_id')
+        fields = ('id', 'server_name', 'server_num', 'brand', 'model', 'cpus',
+                  'ram', 'disk', 'product_date', 'status', 'created_time',
+                  'modified_time')

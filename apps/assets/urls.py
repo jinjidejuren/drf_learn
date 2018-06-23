@@ -14,6 +14,7 @@ router.register(r'regions', views.RegionViewSet, base_name='regions')
 router.register(r'machine_rooms', views.MachineRoomViewSet, base_name='machine_rooms')
 router.register(r'cabinets', views.CabinetViewSet, base_name='cabinets')
 router.register(r'devices', views.DeviceViewSet, base_name='devices')
+router.register(r'servers', views.ServerViewSet, base_name='servers')
 
 
 urlpatterns = [
